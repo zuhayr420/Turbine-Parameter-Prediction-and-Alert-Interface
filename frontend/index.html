@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCADA Platform — Industrial Turbine Predictive Monitoring & Alert System</title>
+  <link rel="stylesheet" href="css/scada.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <!-- Chart.js local for SCADA time-series visualizations -->
+  <script src="js/chart.umd.min.js"></script>
+  <!-- Socket.io for Real-time Telemetry -->
+  <script src="js/socket.io.min.js"></script>
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <div class="brand-icon">T</div>
+        <div>
+          <div class="brand-title">Turbine Parameter Interface</div>
+          
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Plant Operations</div>
+        <a class="nav-item active" data-view="dashboard" onclick="App.navigate('dashboard')">
+
+          <span>Plant Dashboard</span>
+        </a>
+        <a class="nav-item" data-view="units" onclick="App.navigate('units')">
+          <span>Turbine Units</span>
+        </a>
+        <a class="nav-item" data-view="telemetry_input" onclick="App.navigate('telemetry_input', { unitId: 1 })">
+          <span>Telemetry Input</span>
+        </a>
+
+        <div class="nav-section-title">Predictive Intelligence</div>
+        <a class="nav-item" data-view="predictions" onclick="App.navigate('predictions')">
+          
+          <span>3-Hour Forecasting</span>
+        </a>
+        <a class="nav-item" data-view="alerts" onclick="App.navigate('alerts')">
+          <span>Alerts & Breaches</span>
+        </a>
+
+        <div class="nav-section-title">Analytics & Audit</div>
+        <a class="nav-item" data-view="historical" onclick="App.navigate('historical')">
+          <span>Historical Query</span>
+        </a>
+        <a class="nav-item" data-view="reports" onclick="App.navigate('reports')">
+          <span>Technical Reports</span>
+        </a>
+
+        <div class="nav-section-title">System Control</div>
+        <a class="nav-item" data-view="admin" onclick="App.navigate('admin')">
+          <span>Administration</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <span class="user-name" id="nav-user-name">Operator</span>
+          <span class="user-role" id="nav-user-role">OPERATOR</span>
+        </div>
+        <button class="btn btn-sm" onclick="Auth.logout()" title="Logout of SCADA">Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <!-- Top Telemetry & Health Bar -->
+      <header class="top-telemetry-bar">
+        <div class="plant-meta">
+          <span class="plant-name">Turbine Predictive Monitoring</span>
+        </div>
+
+        <div class="telemetry-indicators">
+          <div class="indicator-item">
+            <span class="indicator-dot" id="heartbeat-dot"></span>
+            <span class="indicator-label">Backend:</span>
+            <span class="indicator-val" id="heartbeat-val">CONNECTING</span>
+          </div>
+          <div class="indicator-item">
+            <span class="indicator-label">Station Clock:</span>
+            <span class="indicator-val" id="clock-val">00:00:00</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dynamic View Container -->
+      <section class="app-content" id="app-content-area">
+        <div style="color:var(--text-muted); padding:20px;">Initializing SCADA console...</div>
+      </section>
+    </main>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/views/dashboard.js"></script>
+  <script src="js/views/units.js"></script>
+  <script src="js/views/unit_detail.js"></script>
+  <script src="js/views/predictions.js"></script>
+  <script src="js/views/alerts.js"></script>
+  <script src="js/views/telemetry_input.js"></script>
+  <script src="js/views/historical.js"></script>
+  <script src="js/views/reports.js"></script>
+  <script src="js/views/admin.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
