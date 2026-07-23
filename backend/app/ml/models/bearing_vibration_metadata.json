@@ -1,0 +1,31 @@
+{
+  "model_version": "xgb-bearing_vibration-v1",
+  "parameter_key": "bearing_vibration",
+  "training_date": "2026-11-23T11:41:58.237643+00:00",
+  "training_samples": 72,
+  "features": [
+    "value_t",
+    "lag_1",
+    "lag_2",
+    "lag_3",
+    "lag_5",
+    "diff_1",
+    "diff_3",
+    "rolling_mean_5",
+    "rolling_std_5",
+    "rolling_mean_15",
+    "rolling_std_15",
+    "rolling_mean_30",
+    "rolling_std_30",
+    "rolling_min_30",
+    "rolling_max_30",
+    "rate_of_change",
+    "short_term_slope"
+  ],
+  "algorithm": "XGBoost Regressor",
+  "training_status": "TRAINED",
+  "mae": 1.2268337346184521,
+  "rmse": 1.418855517787434,
+  "r2": -0.196080081015932,
+  "model_path": "e:/Turbine/backend/app/ml/models\\bearing_vibration.joblib"
+}
