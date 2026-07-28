@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: turbine_user
+      POSTGRES_PASSWORD: turbine_password
+      POSTGRES_DB: turbine_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+  web:
+    build: 
+      context: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+      - DATABASE_URL=postgresql://turbine_user:turbine_password@db:5432/turbine_db
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/1
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+    command: >
+      sh -c "flask run --host=0.0.0.0 --port=5000"
+
+  worker:
+    build:
+      context: .
+    environment:
+      - FLASK_ENV=development
+      - DATABASE_URL=postgresql://turbine_user:turbine_password@db:5432/turbine_db
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/1
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+      - web
+    command: celery -A celery_worker.celery worker --loglevel=info
+
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "3000:80"
+    volumes:
+      - ../frontend:/usr/share/nginx/html:ro
+
+volumes:
+  postgres_data:
