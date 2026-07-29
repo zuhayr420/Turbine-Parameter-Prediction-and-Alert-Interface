@@ -1,0 +1,215 @@
+﻿/* High-Density SCADA Components & Widgets — Precision Technical Elements */
+
+/* KPI Metric Cards Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+}
+
+.kpi-card {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+  transition: border-color 0.12s ease;
+}
+
+.kpi-card:hover {
+  border-color: var(--border-strong);
+}
+
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background-color: var(--border-strong);
+}
+
+.kpi-card.normal::before { background-color: var(--status-normal); }
+.kpi-card.warning::before { background-color: var(--status-warning); }
+.kpi-card.critical::before { background-color: var(--status-critical); }
+.kpi-card.accent::before { background-color: var(--primary-accent); }
+
+.kpi-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+}
+
+.kpi-val {
+  font-size: 22px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.kpi-subtext {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Units Overview Grid */
+.unit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 12px;
+}
+
+.unit-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: border-color 0.12s ease;
+}
+
+.unit-card:hover {
+  border-color: var(--text-secondary);
+}
+
+.unit-card-header {
+  padding: 8px 12px;
+  background: var(--bg-panel-header);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.unit-card-body {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.telemetry-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  border-bottom: 1px solid var(--bg-hover);
+  padding-bottom: 4px;
+}
+
+.telemetry-param {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.telemetry-val {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+/* Trend Indicator Arrow/Label */
+.trend-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 2px;
+  letter-spacing: 0.02em;
+}
+
+.trend-stable { color: #475569; background: #f1f5f9; border: 1px solid #cbd5e1; }
+.trend-up { color: #b45309; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(180, 83, 9, 0.25); }
+.trend-rapid-up { color: #b91c1c; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(185, 28, 28, 0.3); font-weight: 700; }
+.trend-down { color: #334155; background: #e2e8f0; border: 1px solid #cbd5e1; }
+.trend-rapid-down { color: #1e293b; background: #cbd5e1; border: 1px solid #94a3b8; font-weight: 700; }
+
+/* Chart Container */
+.chart-panel {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  padding: 10px;
+  border-radius: 2px;
+}
+
+/* Simulation / Demo Warning Banner */
+.simulation-banner {
+  background-color: #fffbeb;
+  border: 1px solid #f59e0b;
+  color: #92400e;
+  padding: 7px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 2px;
+}
+
+/* Action Toolbars */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Modal Overlay & Dialog */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-dialog {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+  width: 480px;
+  max-width: 95vw;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.15);
+}
+
+.modal-header {
+  background: var(--bg-panel-header);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-body {
+  padding: 14px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  background: var(--bg-panel-header);
+  padding: 8px 14px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

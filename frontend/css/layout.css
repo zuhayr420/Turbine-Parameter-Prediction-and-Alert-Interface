@@ -1,0 +1,278 @@
+﻿/* Application Master Layout — Clean Precision Engineering Architecture */
+.app-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: var(--bg-app);
+}
+
+/* Sidebar Navigation */
+.app-sidebar {
+  width: 230px;
+  min-width: 230px;
+  background-color: var(--bg-panel);
+  border-right: 1px solid var(--border-subtle);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+.sidebar-header {
+  height: 50px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--border-subtle);
+  background-color: var(--bg-panel-header);
+}
+
+.brand-icon {
+  width: 24px;
+  height: 24px;
+  background: var(--primary-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.brand-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.brand-subtitle {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  margin-top: 1px;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 10px 8px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-section-title {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  padding: 8px 8px 4px 8px;
+  margin-top: 6px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color 0.12s ease, color 0.12s ease;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+}
+
+.nav-item:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.nav-item.active {
+  background-color: var(--bg-panel-header);
+  color: var(--primary-accent);
+  border-left-color: var(--primary-accent);
+  font-weight: 700;
+}
+
+.sidebar-footer {
+  padding: 10px 12px;
+  border-top: 1px solid var(--border-subtle);
+  background-color: var(--bg-panel-header);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.user-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-role {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Main Application Viewport */
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg-app);
+  min-width: 0;
+}
+
+/* Top Telemetry Header */
+.top-telemetry-bar {
+  height: 50px;
+  min-height: 50px;
+  background-color: var(--bg-panel);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.plant-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.plant-name {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.telemetry-indicators {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  flex-wrap: wrap;
+}
+
+.indicator-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  background: var(--bg-panel-header);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+}
+
+.indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--status-normal);
+  flex-shrink: 0;
+}
+
+.indicator-dot.warning { background-color: var(--status-warning); }
+.indicator-dot.critical { background-color: var(--status-critical); }
+.indicator-dot.offline { background-color: var(--status-offline); }
+
+.indicator-label {
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+}
+
+.indicator-val {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Dynamic Content Area */
+.app-content {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 900px) {
+  .app-sidebar {
+    width: 200px;
+    min-width: 200px;
+  }
+  .plant-name {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 720px) {
+  .app-layout {
+    flex-direction: column;
+  }
+  .app-sidebar {
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .sidebar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 6px;
+    gap: 4px;
+  }
+  .nav-section-title {
+    display: none;
+  }
+  .sidebar-footer {
+    display: none;
+  }
+  .app-main {
+    height: calc(100vh - 120px);
+  }
+  .top-telemetry-bar {
+    padding: 0 10px;
+  }
+  .app-content {
+    padding: 10px;
+    gap: 10px;
+  }
+}
