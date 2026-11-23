@@ -6,14 +6,22 @@
 
 An industrial SCADA and predictive analytics platform engineered for thermal power plant turbines. Integrates real-time sensory telemetry streaming, recursive **XGBoost** time-series forecasting (3-hour horizon), **SHAP** feature attribution, automated threshold alerting, and interactive P&ID turbine schematics.
 
+![SCADA Operational Dashboard](docs/screenshots/scada_dashboard.svg)
+
 ---
 
 ## Key Features
 
 - **3-Hour Recursive Forecasting**: Reads sliding 30-reading observation windows, extracts 17 statistical time-series features (rolling averages, volatility, rate of change, slope), and recursively predicts 12 steps (15-min intervals) ahead using `XGBRegressor`.
 - **Explainable AI (SHAP)**: Identifies the top driving sensor features impacting each predicted step.
-- **Automated Threshold Safety & CMMS Dispatch**: Detects warning and critical threshold breaches in advance and dispatches simulated maintenance work orders to SAP PM / CMMS.
+
+![XGBoost 3-Hour Predictive Forecasting & SHAP Attribution](docs/screenshots/xgboost_forecasting.svg)
+
 - **Interactive P&ID Schematic**: Live SVG turbine schematic with real-time WebSocket telemetry overlays.
+
+![Interactive P&ID Turbine Schematic](docs/screenshots/turbine_pid_schematic.svg)
+
+- **Automated Threshold Safety & CMMS Dispatch**: Detects warning and critical threshold breaches in advance and dispatches simulated maintenance work orders to SAP PM / CMMS.
 - **Role-Based Access Control (RBAC)**: JWT-authenticated roles for Administrators, Engineers, and Control Room Operators with audit logging.
 
 ---

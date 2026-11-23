@@ -1,0 +1,167 @@
+<svg width="1000" height="580" viewBox="0 0 1000 580" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .txt { font-family: 'Times New Roman', Times, serif; }
+      .bold { font-weight: bold; }
+    </style>
+  </defs>
+
+  <!-- Background App Canvas -->
+  <rect width="1000" height="580" fill="#f8fafc"/>
+
+  <!-- Top SCADA Header -->
+  <rect x="0" y="0" width="1000" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="18" y="13" width="24" height="24" rx="2" fill="#0f172a"/>
+  <text x="30" y="30" fill="#ffffff" font-size="13" class="txt bold" text-anchor="middle">T</text>
+  <text x="52" y="31" fill="#0f172a" font-size="14" class="txt bold" letter-spacing="0.5">XGBOOST 3-HOUR PREDICTIVE FORECASTING CONSOLE — TG-02</text>
+  <text x="850" y="31" fill="#64748b" font-size="11" class="txt bold">HORIZON: 12 STEPS (3H)</text>
+
+  <!-- Summary KPI Cards (4) -->
+  <g transform="translate(20, 65)">
+    <rect width="230" height="75" rx="2" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="3" height="75" rx="1" fill="#0f172a"/>
+    <text x="14" y="22" fill="#475569" font-size="10" class="txt bold">CURRENT OBSERVED VALUE</text>
+    <text x="14" y="50" fill="#0f172a" font-size="22" class="txt bold">3.82 mm/s</text>
+    <text x="14" y="67" fill="#64748b" font-size="10" class="txt">Bearing 1 Vibration (Live)</text>
+  </g>
+
+  <g transform="translate(263, 65)">
+    <rect width="230" height="75" rx="2" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="3" height="75" rx="1" fill="#b45309"/>
+    <text x="14" y="22" fill="#475569" font-size="10" class="txt bold">PREDICTED 3-HOUR VALUE</text>
+    <text x="14" y="50" fill="#b45309" font-size="22" class="txt bold">5.42 mm/s</text>
+    <text x="14" y="67" fill="#b45309" font-size="10" class="txt bold">Expected Delta: +1.60 mm/s</text>
+  </g>
+
+  <g transform="translate(506, 65)">
+    <rect width="230" height="75" rx="2" fill="#ffffff" stroke="#cbd5e1"/>
+    <rect width="3" height="75" rx="1" fill="#b45309"/>
+    <text x="14" y="22" fill="#475569" font-size="10" class="txt bold">TRAJECTORY TREND</text>
+    <text x="14" y="50" fill="#b45309" font-size="20" class="txt bold">RAPIDLY INCREASING</text>
+    <text x="14" y="67" fill="#64748b" font-size="10" class="txt">Slope Rate of Change: +12.4%</text>
+  </g>
+
+  <g transform="translate(750, 65)">
+    <rect width="230" height="75" rx="2" fill="#ffffff" stroke="#b45309" stroke-width="1.5"/>
+    <rect width="3" height="75" rx="1" fill="#b45309"/>
+    <text x="14" y="22" fill="#475569" font-size="10" class="txt bold">PREDICTIVE SAFETY STATUS</text>
+    <text x="14" y="50" fill="#b45309" font-size="20" class="txt bold">WARNING BREACH</text>
+    <text x="14" y="67" fill="#b45309" font-size="10" class="txt bold">ETA to Threshold: 105 Minutes</text>
+  </g>
+
+  <!-- Dual-Zone Chart Panel -->
+  <g transform="translate(20, 155)">
+    <rect width="960" height="235" rx="2" fill="#ffffff" stroke="#cbd5e1"/>
+    <!-- Panel Header -->
+    <rect width="960" height="30" rx="2" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="14" y="20" fill="#475569" font-size="11" class="txt bold">TIME-SERIES FORECAST: 30 HISTORICAL OBSERVATIONS → 12 RECURSIVE PREDICTIONS</text>
+    
+    <!-- Legend items -->
+    <circle cx="680" cy="15" r="4" fill="#0284c7"/>
+    <text x="690" y="19" fill="#475569" font-size="10" class="txt">Historical (Solid Blue)</text>
+
+    <line x1="795" y1="15" x2="815" y2="15" stroke="#d97706" stroke-width="2" stroke-dasharray="4,2"/>
+    <text x="822" y="19" fill="#475569" font-size="10" class="txt">Forecast (Dashed Amber)</text>
+
+    <line x1="905" y1="15" x2="925" y2="15" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <text x="930" y="19" fill="#dc2626" font-size="10" class="txt">Limit</text>
+
+    <!-- Chart Grid & Axes -->
+    <g transform="translate(50, 45)">
+      <!-- Horizontal grid lines -->
+      <line x1="0" y1="140" x2="880" y2="140" stroke="#e2e8f0" stroke-width="1"/>
+      <line x1="0" y1="105" x2="880" y2="105" stroke="#e2e8f0" stroke-width="1"/>
+      <line x1="0" y1="70" x2="880" y2="70" stroke="#e2e8f0" stroke-width="1"/>
+      <line x1="0" y1="35" x2="880" y2="35" stroke="#e2e8f0" stroke-width="1"/>
+
+      <!-- Y-Axis Labels -->
+      <text x="-10" y="143" fill="#64748b" font-size="10" class="txt" text-anchor="end">2.0 mm/s</text>
+      <text x="-10" y="108" fill="#64748b" font-size="10" class="txt" text-anchor="end">3.0 mm/s</text>
+      <text x="-10" y="73" fill="#64748b" font-size="10" class="txt" text-anchor="end">4.0 mm/s</text>
+      <text x="-10" y="38" fill="#64748b" font-size="10" class="txt" text-anchor="end">5.0 mm/s</text>
+
+      <!-- Warning Threshold Line (4.5 mm/s) -->
+      <line x1="0" y1="52" x2="880" y2="52" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,4"/>
+      <text x="875" y="47" fill="#b45309" font-size="9" class="txt bold" text-anchor="end">WARNING LIMIT: 4.50 mm/s</text>
+
+      <!-- Critical Threshold Line (7.0 mm/s - above) -->
+      <line x1="0" y1="12" x2="880" y2="12" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4,4"/>
+      <text x="875" y="8" fill="#dc2626" font-size="9" class="txt bold" text-anchor="end">CRITICAL LIMIT: 7.00 mm/s</text>
+
+      <!-- Dividing timeline vertical boundary -->
+      <line x1="440" y1="0" x2="440" y2="150" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="2,2"/>
+      <text x="440" y="162" fill="#0f172a" font-size="10" class="txt bold" text-anchor="middle">Current Observation (t)</text>
+
+      <!-- Historical Curve (Solid Blue) -->
+      <path d="M 0,132 Q 100,128 180,122 T 320,110 T 400,95 T 440,80" fill="none" stroke="#0284c7" stroke-width="2.5"/>
+      <circle cx="440" cy="80" r="4" fill="#0284c7"/>
+
+      <!-- 3-Hour Forecast Curve (Dashed Amber) -->
+      <path d="M 440,80 Q 520,68 620,54 T 750,42 T 880,28" fill="none" stroke="#d97706" stroke-width="2.5" stroke-dasharray="6,4"/>
+      <circle cx="620" cy="54" r="4" fill="#f59e0b"/>
+      <circle cx="880" cy="28" r="4" fill="#d97706"/>
+
+      <!-- X-Axis Labels -->
+      <text x="0" y="162" fill="#64748b" font-size="9" class="txt">t-29 (History Start)</text>
+      <text x="220" y="162" fill="#64748b" font-size="9" class="txt">t-15</text>
+      <text x="580" y="162" fill="#b45309" font-size="9" class="txt bold">+60m</text>
+      <text x="720" y="162" fill="#b45309" font-size="9" class="txt bold">+120m</text>
+      <text x="860" y="162" fill="#b45309" font-size="9" class="txt bold">+180m (3 Hours)</text>
+    </g>
+  </g>
+
+  <!-- SHAP Feature Explainability Table Panel -->
+  <g transform="translate(20, 405)">
+    <rect width="960" height="155" rx="2" fill="#ffffff" stroke="#cbd5e1"/>
+    <!-- Panel Header -->
+    <rect width="960" height="30" rx="2" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="14" y="20" fill="#475569" font-size="11" class="txt bold">RECURSIVE PREDICTIONS &amp; SHAP EXPLAINABILITY (TOP DRIVING SIGNALS)</text>
+
+    <!-- Table Header Row -->
+    <rect x="0" y="30" width="960" height="24" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="20" y="46" fill="#475569" font-size="10" class="txt bold">STEP</text>
+    <text x="110" y="46" fill="#475569" font-size="10" class="txt bold">FUTURE OFFSET</text>
+    <text x="240" y="46" fill="#475569" font-size="10" class="txt bold">PREDICTED VALUE</text>
+    <text x="380" y="46" fill="#475569" font-size="10" class="txt bold">SAFETY STATUS</text>
+    <text x="520" y="46" fill="#475569" font-size="10" class="txt bold">SHAP EXPLAINABILITY ATTRIBUTION (TOP CONTRIBUTING FEATURES)</text>
+
+    <!-- Row 1 -->
+    <rect x="0" y="54" width="960" height="30" fill="#ffffff" stroke="#f1f5f9"/>
+    <text x="20" y="73" fill="#0f172a" font-size="11" class="txt bold">Step +4</text>
+    <text x="110" y="73" fill="#0f172a" font-size="11" class="txt">+60 Minutes</text>
+    <text x="240" y="73" fill="#0f172a" font-size="11" class="txt bold">4.28 mm/s</text>
+    <text x="380" y="73" fill="#15803d" font-size="11" class="txt bold">NORMAL (Margin: 0.22)</text>
+    <rect x="520" y="61" width="130" height="18" rx="2" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="526" y="74" fill="#0f172a" font-size="10" class="txt">lag_1 (+0.24)</text>
+    <rect x="655" y="61" width="140" height="18" rx="2" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="661" y="74" fill="#0f172a" font-size="10" class="txt">rolling_mean_5 (+0.18)</text>
+    <rect x="800" y="61" width="140" height="18" rx="2" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="806" y="74" fill="#0f172a" font-size="10" class="txt">rate_of_change (+0.12)</text>
+
+    <!-- Row 2 (Breach) -->
+    <rect x="0" y="84" width="960" height="30" fill="rgba(245,158,11,0.06)" stroke="#f1f5f9"/>
+    <text x="20" y="103" fill="#b45309" font-size="11" class="txt bold">Step +7</text>
+    <text x="110" y="103" fill="#b45309" font-size="11" class="txt bold">+105 Minutes</text>
+    <text x="240" y="103" fill="#b45309" font-size="11" class="txt bold">4.62 mm/s ▲</text>
+    <text x="380" y="103" fill="#b45309" font-size="11" class="txt bold">WARNING BREACH DETECTED</text>
+    <rect x="520" y="91" width="130" height="18" rx="2" fill="#f1f5f9" stroke="#b45309"/>
+    <text x="526" y="104" fill="#b45309" font-size="10" class="txt bold">rate_of_change (+0.48)</text>
+    <rect x="655" y="91" width="140" height="18" rx="2" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="661" y="104" fill="#0f172a" font-size="10" class="txt">rolling_std_15 (+0.32)</text>
+    <rect x="800" y="91" width="140" height="18" rx="2" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="806" y="104" fill="#0f172a" font-size="10" class="txt">momentum_3 (+0.28)</text>
+
+    <!-- Row 3 (3H End) -->
+    <rect x="0" y="114" width="960" height="30" fill="rgba(245,158,11,0.06)" stroke="#f1f5f9"/>
+    <text x="20" y="133" fill="#b45309" font-size="11" class="txt bold">Step +12</text>
+    <text x="110" y="133" fill="#b45309" font-size="11" class="txt bold">+180 Minutes (3H)</text>
+    <text x="240" y="133" fill="#b45309" font-size="11" class="txt bold">5.42 mm/s ▲</text>
+    <text x="380" y="133" fill="#b45309" font-size="11" class="txt bold">WARNING STATE (Margin: -0.92)</text>
+    <rect x="520" y="121" width="130" height="18" rx="2" fill="#f1f5f9" stroke="#b45309"/>
+    <text x="526" y="134" fill="#b45309" font-size="10" class="txt bold">rate_of_change (+0.61)</text>
+    <rect x="655" y="121" width="140" height="18" rx="2" fill="#f1f5f9" stroke="#b45309"/>
+    <text x="661" y="134" fill="#b45309" font-size="10" class="txt bold">slope_30 (+0.44)</text>
+    <rect x="800" y="121" width="140" height="18" rx="2" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="806" y="134" fill="#0f172a" font-size="10" class="txt">lag_1 (+0.35)</text>
+  </g>
+</svg>

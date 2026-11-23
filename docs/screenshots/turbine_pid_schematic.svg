@@ -1,0 +1,91 @@
+<svg width="1000" height="420" viewBox="0 0 1000 420" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .txt { font-family: 'Times New Roman', Times, serif; }
+      .bold { font-weight: bold; }
+    </style>
+  </defs>
+
+  <!-- Background App Canvas -->
+  <rect width="1000" height="420" fill="#f8fafc"/>
+
+  <!-- Panel Container -->
+  <rect x="20" y="15" width="960" height="390" rx="2" fill="#ffffff" stroke="#cbd5e1"/>
+  <!-- Header -->
+  <rect x="20" y="15" width="960" height="34" rx="2" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="35" y="37" fill="#475569" font-size="11" class="txt bold">TG-02 — INTERACTIVE P&amp;ID SCHEMATIC &amp; SENSORY TELEMETRY OVERLAYS</text>
+  <text x="965" y="37" fill="#15803d" font-size="10" class="txt bold" text-anchor="end">LIVE SCADA WEBSOCKET STREAM</text>
+
+  <!-- Dark Engineering Schematic Canvas -->
+  <g transform="translate(40, 60)">
+    <rect width="920" height="325" rx="2" fill="#0f172a"/>
+
+    <!-- High-Pressure / Intermediate-Pressure Turbine Housing -->
+    <rect x="260" y="110" width="400" height="105" rx="3" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+    <text x="460" y="165" fill="#94a3b8" font-size="14" class="txt bold" text-anchor="middle" letter-spacing="1">HP/IP TURBINE CASING</text>
+
+    <!-- Rotor Shaft Extending Through -->
+    <rect x="80" y="153" width="760" height="18" rx="2" fill="#64748b"/>
+    <line x1="80" y1="162" x2="840" y2="162" stroke="#94a3b8" stroke-width="1" stroke-dasharray="8,4"/>
+
+    <!-- Generator Section (Right) -->
+    <rect x="700" y="90" width="150" height="145" rx="3" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+    <text x="775" y="165" fill="#94a3b8" font-size="13" class="txt bold" text-anchor="middle">500MW GENERATOR</text>
+
+    <!-- Bearing Pedestals -->
+    <!-- BRG 1 (Left) -->
+    <rect x="180" y="125" width="45" height="75" rx="2" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="202" y="220" fill="#94a3b8" font-size="11" class="txt bold" text-anchor="middle">BRG-1</text>
+
+    <!-- BRG 2 (Middle) -->
+    <rect x="655" y="125" width="45" height="75" rx="2" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="677" y="220" fill="#94a3b8" font-size="11" class="txt bold" text-anchor="middle">BRG-2</text>
+
+    <!-- Sensor Overlay Tags (Clean Industrial Badges) -->
+
+    <!-- Sensor 1: BRG-1 Vibration (Warning Amber) -->
+    <g transform="translate(140, 45)">
+      <line x1="62" y1="45" x2="62" y2="80" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <circle cx="62" cy="80" r="3" fill="#f59e0b"/>
+      <rect width="125" height="45" rx="2" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="10" y="18" fill="#f59e0b" font-size="10" class="txt bold">BRG 1 VIBRATION</text>
+      <text x="10" y="36" fill="#ffffff" font-size="14" class="txt bold">4.18 mm/s ▲</text>
+    </g>
+
+    <!-- Sensor 2: BRG-1 Temperature (Normal Green) -->
+    <g transform="translate(140, 245)">
+      <line x1="62" y1="0" x2="62" y2="-45" stroke="#15803d" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <circle cx="62" cy="-45" r="3" fill="#15803d"/>
+      <rect width="125" height="45" rx="2" fill="#1e293b" stroke="#15803d" stroke-width="1.5"/>
+      <text x="10" y="18" fill="#4ade80" font-size="10" class="txt bold">BRG 1 TEMP</text>
+      <text x="10" y="36" fill="#ffffff" font-size="14" class="txt bold">78.4 °C</text>
+    </g>
+
+    <!-- Sensor 3: Casing Temperature (Normal Green) -->
+    <g transform="translate(400, 35)">
+      <line x1="62" y1="45" x2="62" y2="75" stroke="#15803d" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <circle cx="62" cy="75" r="3" fill="#15803d"/>
+      <rect width="125" height="45" rx="2" fill="#1e293b" stroke="#15803d" stroke-width="1.5"/>
+      <text x="10" y="18" fill="#4ade80" font-size="10" class="txt bold">CASING TEMP</text>
+      <text x="10" y="36" fill="#ffffff" font-size="14" class="txt bold">512.4 °C</text>
+    </g>
+
+    <!-- Sensor 4: Exhaust Steam Pressure -->
+    <g transform="translate(400, 245)">
+      <line x1="62" y1="0" x2="62" y2="-30" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <circle cx="62" cy="-30" r="3" fill="#0284c7"/>
+      <rect width="125" height="45" rx="2" fill="#1e293b" stroke="#0284c7" stroke-width="1.5"/>
+      <text x="10" y="18" fill="#38bdf8" font-size="10" class="txt bold">EXHAUST PRESS</text>
+      <text x="10" y="36" fill="#ffffff" font-size="14" class="txt bold">0.092 bar</text>
+    </g>
+
+    <!-- Sensor 5: BRG-2 Vibration (Normal Green) -->
+    <g transform="translate(615, 45)">
+      <line x1="62" y1="45" x2="62" y2="80" stroke="#15803d" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <circle cx="62" cy="80" r="3" fill="#15803d"/>
+      <rect width="125" height="45" rx="2" fill="#1e293b" stroke="#15803d" stroke-width="1.5"/>
+      <text x="10" y="18" fill="#4ade80" font-size="10" class="txt bold">BRG 2 VIBRATION</text>
+      <text x="10" y="36" fill="#ffffff" font-size="14" class="txt bold">1.94 mm/s</text>
+    </g>
+  </g>
+</svg>
