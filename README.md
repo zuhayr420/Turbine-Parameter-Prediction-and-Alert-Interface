@@ -6,7 +6,7 @@
 
 An industrial SCADA and predictive analytics platform engineered for thermal power plant turbines. Integrates real-time sensory telemetry streaming, recursive **XGBoost** time-series forecasting (3-hour horizon), **SHAP** feature attribution, automated threshold alerting, and interactive P&ID turbine schematics.
 
-![SCADA Operational Dashboard](docs/screenshots/scada_dashboard.svg)
+![SCADA Operational Dashboard](docs/screenshots/02_scada_dashboard.png)
 
 ---
 
@@ -15,11 +15,11 @@ An industrial SCADA and predictive analytics platform engineered for thermal pow
 - **3-Hour Recursive Forecasting**: Reads sliding 30-reading observation windows, extracts 17 statistical time-series features (rolling averages, volatility, rate of change, slope), and recursively predicts 12 steps (15-min intervals) ahead using `XGBRegressor`.
 - **Explainable AI (SHAP)**: Identifies the top driving sensor features impacting each predicted step.
 
-![XGBoost 3-Hour Predictive Forecasting & SHAP Attribution](docs/screenshots/xgboost_forecasting.svg)
+![XGBoost 3-Hour Predictive Forecasting & SHAP Attribution](docs/screenshots/03_xgboost_forecast.png)
 
 - **Interactive P&ID Schematic**: Live SVG turbine schematic with real-time WebSocket telemetry overlays.
 
-![Interactive P&ID Turbine Schematic](docs/screenshots/turbine_pid_schematic.svg)
+![Interactive P&ID Turbine Schematic](docs/screenshots/04_pid_turbine_schematic.png)
 
 - **Automated Threshold Safety & CMMS Dispatch**: Detects warning and critical threshold breaches in advance and dispatches simulated maintenance work orders to SAP PM / CMMS.
 - **Role-Based Access Control (RBAC)**: JWT-authenticated roles for Administrators, Engineers, and Control Room Operators with audit logging.
@@ -70,6 +70,8 @@ Open `http://localhost:3001/login.html` in your browser.
 ---
 
 ## Default Login Credentials
+
+![SCADA Login Terminal](docs/screenshots/01_login_screen.png)
 
 | Role | Username | Password | Access Scope |
 | :--- | :--- | :--- | :--- |
