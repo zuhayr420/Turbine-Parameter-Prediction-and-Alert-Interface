@@ -9,7 +9,7 @@ numpy==2.5.5
 joblib==1.4.2
 python-dotenv==1.2.4
 marshmallow==3.21.2
-pytest==8.2.0
+pytest==9.2.0
 gunicorn==27.0.1
 
 psycopg2-binary
