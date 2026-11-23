@@ -1,5 +1,11 @@
 # Industrial Turbine Predictive Monitoring & SCADA Alert System
 
+[![CI Test Suite](https://github.com/zuhayr420/Turbine-Parameter-Prediction-and-Alert-Interface/actions/workflows/ci.yml/badge.svg)](https://github.com/zuhayr420/Turbine-Parameter-Prediction-and-Alert-Interface/actions/workflows/ci.yml)
+[![CodeQL Security Scan](https://github.com/zuhayr420/Turbine-Parameter-Prediction-and-Alert-Interface/actions/workflows/codeql.yml/badge.svg)](https://github.com/zuhayr420/Turbine-Parameter-Prediction-and-Alert-Interface/actions/workflows/codeql.yml)
+![Python 3.11 | 3.12](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Tests: Pytest](https://img.shields.io/badge/tests-pytest-brightgreen.svg)
+
 An enterprise-grade SCADA and industrial predictive analytics platform engineered for thermal power plant turbines. The platform combines real-time sensory ingestion (WebSocket & MQTT simulation), multi-step recursive forecasting using **XGBoost Regressors**, explainable AI with **SHAP**, automated threshold safety alerts, maintenance dispatch integration (mock SAP PM/CMMS), and interactive P&ID turbine schematics.
 
 ---
@@ -113,3 +119,28 @@ cd backend
 python -m pytest
 ```
 All 13 test suites cover authentication, unit provisioning, telemetry ingestion, alert handling, and XGBoost recursive forecasting.
+
+---
+
+## Frequently Asked Questions (FAQ)
+
+### 1. How does the 3-hour recursive forecast work?
+The forecasting pipeline slides a 30-observation window, extracts 17 statistical and time-domain features (rolling means, momentum, lag differentials), and recursively predicts 12 steps ahead (15-minute intervals = 3 Hours) using an `XGBRegressor` model.
+
+### 2. Can PostgreSQL and Redis be used in production?
+Yes. The platform provides a production-ready `docker-compose.yml` configured with PostgreSQL 15, Redis 7, Celery background workers, and persistent volumes.
+
+### 3. How does SAP PM / CMMS dispatch work?
+When a parameter is predicted to breach critical safety thresholds, `cmms_service.py` automatically generates a structured maintenance order payload formatted for ERP/CMMS integration.
+
+---
+
+## Project Roadmap
+
+- [x] Multi-step recursive 3-hour XGBoost regression.
+- [x] SHAP TreeExplainer feature importance visualization.
+- [x] Real-time SCADA WebSocket streaming and interactive P&ID turbine schematic.
+- [x] Role-Based Access Control (Admin, Engineer, Operator) with JWT authentication.
+- [x] GitHub Actions automated CI testing and CodeQL security analysis.
+- [ ] Direct OPC-UA and Modbus TCP industrial protocol connector support.
+- [ ] Multi-tenant plant clustering across geographical stations.
