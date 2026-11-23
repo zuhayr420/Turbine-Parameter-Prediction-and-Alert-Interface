@@ -1,146 +1,87 @@
-# Industrial Turbine Predictive Monitoring & SCADA Alert System
+# Turbine Predictive Monitoring & SCADA Alert Platform
 
-[![CI Test Suite](https://github.com/zuhayr420/Turbine-Parameter-Prediction-and-Alert-Interface/actions/workflows/ci.yml/badge.svg)](https://github.com/zuhayr420/Turbine-Parameter-Prediction-and-Alert-Interface/actions/workflows/ci.yml)
-[![CodeQL Security Scan](https://github.com/zuhayr420/Turbine-Parameter-Prediction-and-Alert-Interface/actions/workflows/codeql.yml/badge.svg)](https://github.com/zuhayr420/Turbine-Parameter-Prediction-and-Alert-Interface/actions/workflows/codeql.yml)
-![Python 3.11 | 3.12](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue.svg)
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Tests: Pytest](https://img.shields.io/badge/tests-pytest-brightgreen.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)
+![Tests](https://img.shields.io/badge/tests-pytest-green.svg)
 
-An enterprise-grade SCADA and industrial predictive analytics platform engineered for thermal power plant turbines. The platform combines real-time sensory ingestion (WebSocket & MQTT simulation), multi-step recursive forecasting using **XGBoost Regressors**, explainable AI with **SHAP**, automated threshold safety alerts, maintenance dispatch integration (mock SAP PM/CMMS), and interactive P&ID turbine schematics.
-
----
-
-## System Architecture
-
-```text
-Turbine-Parameter-Prediction-and-Alert-Interface/
-├── backend/
-│   ├── app/
-│   │   ├── ml/                 # XGBoost predictor, feature engineering & training
-│   │   ├── models/             # SQLAlchemy ORM models (Units, Readings, Alerts, Audit)
-│   │   ├── routes/             # REST API routes (Auth, Units, Forecast, Telemetry, etc.)
-│   │   ├── services/           # Prediction orchestration, CMMS dispatch, Ingestion loop
-│   │   └── utils/              # RBAC decorators & response handlers
-│   ├── tests/                  # Pytest automated test suites
-│   ├── run.py                  # Backend application entry point (Flask-SocketIO)
-│   ├── requirements.txt        # Backend dependencies
-│   ├── Dockerfile              # Container definition for web service
-│   └── docker-compose.yml      # Multi-container orchestration (PostgreSQL, Redis, Celery)
-│
-└── frontend/
-    ├── css/                    # Industrial SCADA stylesheets (scada.css, layout.css, components.css)
-    ├── js/
-    │   ├── api.js              # Centralized API client & JWT interceptors
-    │   ├── app.js              # Application router, WebSockets & health monitor
-    │   ├── auth.js             # Session state & RBAC helpers
-    │   ├── charts.js           # Dual-zone time-series Chart.js renderer
-    │   └── views/              # Modular view components (Dashboard, Units, Forecast, Alerts, etc.)
-    ├── index.html              # Single-page SCADA operational console
-    └── login.html              # Industrial authentication terminal
-```
+An industrial SCADA and predictive analytics platform engineered for thermal power plant turbines. Integrates real-time sensory telemetry streaming, recursive **XGBoost** time-series forecasting (3-hour horizon), **SHAP** feature attribution, automated threshold alerting, and interactive P&ID turbine schematics.
 
 ---
 
 ## Key Features
 
-1. **Multi-Step Recursive 3-Hour Forecasting**:
-   - Reads 30 chronological sensor observations.
-   - Extracts 17 time-series features (lags, rolling averages, volatility, rate of change, slope).
-   - Recursively projects 12 future steps (15-minute intervals = 3 Hours ahead) via `XGBRegressor`.
-2. **Explainable AI (SHAP)**:
-   - Evaluates tree attribution at each forecast step to show the top 3 driving features.
-3. **Automated Safety & Alerting**:
-   - Evaluates warning and critical limit breaches along the predicted trajectory.
-   - Calculates estimated Time-to-Breach (ETA).
-   - Mock CMMS integration: dispatches simulated work orders to SAP PM on critical alerts.
-4. **Interactive P&ID Schematic**:
-   - Real-time SVG turbine diagram displaying live bearing vibration and temperature overlays via WebSocket events.
-5. **Role-Based Access Control (RBAC)**:
-   - `admin`: Full station management, unit provisioning, parameter configuration, user administration.
-   - `engineer`: Parameter inspection, 3-hour forecasting, manual data imports, model retraining.
-   - `operator`: Real-time telemetry monitoring, manual gauge ingestion, alert acknowledgement.
+- **3-Hour Recursive Forecasting**: Reads sliding 30-reading observation windows, extracts 17 statistical time-series features (rolling averages, volatility, rate of change, slope), and recursively predicts 12 steps (15-min intervals) ahead using `XGBRegressor`.
+- **Explainable AI (SHAP)**: Identifies the top driving sensor features impacting each predicted step.
+- **Automated Threshold Safety & CMMS Dispatch**: Detects warning and critical threshold breaches in advance and dispatches simulated maintenance work orders to SAP PM / CMMS.
+- **Interactive P&ID Schematic**: Live SVG turbine schematic with real-time WebSocket telemetry overlays.
+- **Role-Based Access Control (RBAC)**: JWT-authenticated roles for Administrators, Engineers, and Control Room Operators with audit logging.
 
 ---
 
-## Quickstart Guide
+## Tech Stack
 
-### 1. Prerequisites
-- Python 3.10+ (Recommended: Python 3.12)
-- Modern web browser (Chrome, Edge, Firefox)
+- **Backend**: Python, Flask, Flask-SocketIO, SQLAlchemy, Celery, Redis
+- **Machine Learning**: XGBoost, Scikit-learn (Isolation Forest), SHAP, Joblib, NumPy, Pandas
+- **Frontend**: Vanilla JavaScript (ES6+), Industrial SCADA CSS, Chart.js
+- **DevOps**: Docker, Docker Compose, Pytest
 
-### 2. Backend Setup
+---
+
+## Getting Started
+
+### 1. Backend Setup
+
 ```bash
 cd backend
 
-# Create and activate virtual environment
+# Create virtual environment
 python -m venv .venv
-# On Windows:
-.\.venv\Scripts\activate
-# On Linux/macOS:
-source .venv/bin/activate
+source .venv/bin/activate  # On Windows: .\.venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Run migrations / seed initial accounts
+# Seed database with initial turbine units and accounts
 python seed.py
 
-# Launch backend server (runs on http://localhost:5000)
+# Start backend server (http://127.0.0.1:5000)
 python run.py
 ```
 
-### 3. Frontend Setup
-In a new terminal window:
+### 2. Frontend Setup
+
+In a separate terminal:
+
 ```bash
 cd frontend
-
-# Serve static files on port 3000
-python -m http.server 3000
+python -m http.server 3001
 ```
-Open **[http://localhost:3000/login.html](http://localhost:3000/login.html)** in your browser.
+
+Open `http://localhost:3001/login.html` in your browser.
 
 ---
 
 ## Default Login Credentials
 
-| Role | Username | Password |
-| :--- | :--- | :--- |
-| **Administrator** | `admin` | `Admin@1234` |
-| **Engineer** | `engineer1` | `Engineer@1234` |
-| **Operator** | `operator1` | `Operator@1234` |
+| Role | Username | Password | Access Scope |
+| :--- | :--- | :--- | :--- |
+| **Administrator** | `admin` | `Admin@1234` | Full system control, unit provisioning & user management |
+| **Engineer** | `engineer1` | `Engineer@1234` | 3H forecast execution, model management & data imports |
+| **Operator** | `operator1` | `Operator@1234` | Live telemetry monitoring, gauge inputs & alert triage |
 
 ---
 
-## Running Automated Tests
+## Automated Tests
 
-Run the backend test suite:
+Run backend unit and integration tests:
+
 ```bash
 cd backend
 python -m pytest
 ```
-All 13 test suites cover authentication, unit provisioning, telemetry ingestion, alert handling, and XGBoost recursive forecasting.
 
 ---
 
-## Frequently Asked Questions (FAQ)
+## License
 
-### 1. How does the 3-hour recursive forecast work?
-The forecasting pipeline slides a 30-observation window, extracts 17 statistical and time-domain features (rolling means, momentum, lag differentials), and recursively predicts 12 steps ahead (15-minute intervals = 3 Hours) using an `XGBRegressor` model.
-
-### 2. Can PostgreSQL and Redis be used in production?
-Yes. The platform provides a production-ready `docker-compose.yml` configured with PostgreSQL 15, Redis 7, Celery background workers, and persistent volumes.
-
-### 3. How does SAP PM / CMMS dispatch work?
-When a parameter is predicted to breach critical safety thresholds, `cmms_service.py` automatically generates a structured maintenance order payload formatted for ERP/CMMS integration.
-
----
-
-## Project Roadmap
-
-- [x] Multi-step recursive 3-hour XGBoost regression.
-- [x] SHAP TreeExplainer feature importance visualization.
-- [x] Real-time SCADA WebSocket streaming and interactive P&ID turbine schematic.
-- [x] Role-Based Access Control (Admin, Engineer, Operator) with JWT authentication.
-- [x] GitHub Actions automated CI testing and CodeQL security analysis.
-- [ ] Direct OPC-UA and Modbus TCP industrial protocol connector support.
-- [ ] Multi-tenant plant clustering across geographical stations.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
